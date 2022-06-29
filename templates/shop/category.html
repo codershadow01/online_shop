@@ -1,0 +1,40 @@
+{% extends 'shop/base.html' %}
+{% load static %}
+
+{% block css_files %}
+     <link rel="stylesheet" href="{% static 'css/category.css' %}" type="text/css">
+{% endblock %}
+
+{% block title %}
+    {% for item in item_list|slice:":1" %}
+        {{item.category.category_name}}
+    {% endfor %}
+{% endblock %}
+
+{% block content %}
+
+    
+    <section class="product">
+        {% for item in item_list|slice:":1" %}
+        <h1 class="product-category">{{item.category.category_name}}</h1>
+    {% endfor %}
+    <hr>
+    <div class="container features">
+    <div class="row">
+    {% for item in item_list %}
+        <div class="col-lg-6 col-md-6 col-sm-12">
+        <div class="card border-dark mb-5 text-dark bg-light mb-3" style="width: 30rem;">
+        <img src="{{ item.image.url }}" class="card-img-top" alt="Card image cap" />
+        <div class="card-body">
+        <h5 class="card-title"><strong>{{item.item_name}}</strong></h5>
+        <div class="d-inline">
+        <a href="{{item.get_absolute_url}}" class="btn btn-primary">View</a>
+        </div>
+        <h4 style="display: inline-block; float: right"><strong>{{item.item_cost}}</strong></h4>
+        </div>
+        </div>
+        </div>
+    {% endfor %}
+    </div>
+    </section>
+{% endblock %}

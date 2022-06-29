@@ -1,0 +1,44 @@
+{% extends 'shop/base.html' %}
+{% load static %}
+
+{% block title %}
+    Zombo
+{% endblock %}
+
+{% block content %}
+    
+    <header class="hero-section">
+    </header>
+    <div class="description">
+	    <h1>Welcome to the ZOMBO</h1>
+	    <p>Your One Way To Shop.</p>
+    </div>
+    {% if messages %}
+        {% for message in messages %}
+        <div class="alert alert-primary" role="alert">
+         {% if message.tags %}  {% endif %} {{ message }}
+         </div>
+        {% endfor %}
+    {% endif %}
+    <section class="product">
+    <h2 class="product-category"><strong>categories</strong></h2>
+
+    
+    <div class="container features">
+        <div class="row">
+        {% for c in category %}
+            <div class="col-lg-6 col-md-6 col-sm-12">
+            <div class="card border-secondary mb-5 text-white bg-success mb-3" style="width: 30rem;">
+            <img src="{{c.category_image.url}}"  class="card-img-top"/>
+            <div class="card-body">
+            <h5 class="card-title"><strong>{{c.category_name}}</strong></h5>
+            <a href="{{c.get_absolute_url}}" class="btn btn-primary">View</a>
+            </div>
+            </div>
+            </div>
+        {% endfor %}
+         </div>
+        </div>
+    </section>
+    
+{% endblock %}

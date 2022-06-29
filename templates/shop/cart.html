@@ -1,0 +1,63 @@
+{% extends "shop/base.html" %}
+{% load static %}
+
+{% block css_files %}
+   <link rel="stylesheet" href="{% static 'css/cart.css' %}">
+{% endblock %}
+
+{% block title %}
+    Your Cart
+{% endblock %}
+
+{% block content %}
+  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+  <div class="container padding-bottom-3x mb-1">
+    <div class="table-responsive shopping-cart">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Product Name</th>
+                    <th class="text-center">Quantity</th>
+                    <th class="text-center">Amount</th>
+                    <th class="text-center"><a class="btn btn-sm btn-outline-danger" href="">Clear Cart</a></th>
+                </tr>
+            </thead>
+            <tbody>
+              {% for c in cart %}
+                <tr>
+                    <td>
+                        <div class="product-item">
+                            <img src="{{c.item.image.url}}" alt="Product" class="img-fluid img-thumbnail" width="10">
+                            <div class="product-info">
+                                <h4 class="product-title">{{c.item.item_name}}</h4>
+                            </div>
+                        </div>
+                    </td>
+                    <td class="text-center">
+                        <div class="count-input">
+                            <select class="form-control">
+                                <option>1</option>
+                                <option>2</option>
+                                <option>3</option>
+                                <option>4</option>
+                                <option>5</option>
+                            </select>
+                        </div>
+                    </td>
+                    <td class="text-center text-lg text-medium">{{c.item.item_cost}}</td>
+                    <td class="text-center"><a class="remove-from-cart" href="#" data-toggle="tooltip" title="" data-original-title="Remove item"><i class="fa fa-trash"></i></a></td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    <div class="shopping-cart-footer">
+        <div class="column text-lg">Total Amount+shipping charges: <span class="text-medium">{{total}}</span></div>
+    </div>
+    <div class="shopping-cart-footer">
+        {% comment %} <div class="column"><a class="btn btn-outline-secondary" href=""><i class="icon-arrow-left"></i>&nbsp;Back to Shopping</a></div> {% endcomment %}
+        {% comment %} <div class="column"><a class="btn btn-primary" href="" data-toast="" data-toast-type="success" data-toast-position="topRight" data-toast-icon="icon-circle-check" data-toast-title="Your cart" data-toast-message="is updated successfully!">Update Cart</a><a class="btn btn-success" href="/place-order">Checkout</a></div> {% endcomment %}
+    </div>
+</div>
+{% endblock %}
+     	          

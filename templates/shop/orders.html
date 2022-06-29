@@ -1,0 +1,35 @@
+{% extends 'shop/base.html' %}
+{% load static %}
+
+{% block title %}
+    Buy Now
+{% endblock title %}
+
+{% block content %}
+<div class="container my-5">
+    <div class="row">
+        <h3>Welcome {{orders.customer.name}}</h3>
+            <div class="col-sm-2 border-end">
+                <ul class="list-unstyled">
+                    <li class="d-grid"><a href="{% url 'orders' %}" class="btn btn-primary">Orders</a></li>
+                </ul>
+            </div>
+            <div class="col-sm-9 offset-sm-1">
+                {% for orders in orders %}
+                    <div class="row shadow-sm mb-3">
+                        <div class="col-sm-2">
+                            <img src="{{orders.items.image.url}}" alt="" class="img-fluid" height="150" width="150">
+                        </div>
+                        <div class="col-sm-7">
+                            <p>Product : {{orders.items.item_name}}</p>
+                            <p>Cost : {{orders.items.item_cost}}</p>
+                        </div>
+                        <div class="col-sm-3 fw-bold">
+                        <p>Order Status: {{orders.ordered}}</p>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+    </div>
+</div>
+{% endblock content %}
